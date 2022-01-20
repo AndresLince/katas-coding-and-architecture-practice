@@ -18,5 +18,21 @@ class Chapter1Test extends TestCase
         $validation = Chapter1::validateHasUniqueCharacters($string);
         $this->assertEquals($validation, false);
     }
+
+    /** @test */
+    public function is_permutation() {
+        $string1 = 'abcd';
+        $string2 = 'acbd';
+        $validation = Chapter1::isPermutation($string1, $string2);
+        $this->assertEquals($validation, true);
+    }
+
+    /** @test */
+    public function is_not_permutation() {
+        $string1 = 'abcs';
+        $string2 = 'abcd';
+        $validation = Chapter1::isPermutation($string1, $string2);
+        $this->assertEquals($validation,false);
+    }
 }
 ?>
