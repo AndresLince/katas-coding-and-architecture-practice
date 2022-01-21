@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use App\Models\Utils;
 class Chapter1
 {
     /**
@@ -55,6 +56,27 @@ class Chapter1
         }
 
         return true;
+    }
+
+    public static function urlify(string $phrase, int $phrase_length): string{
+        $number_empty_spaces = Utils::countOfChars($phrase, 0, $phrase_length,' ');
+        $new_index = ($phrase_length - 1) + $number_empty_spaces * 2;
+        
+        if ($new_index + 1 < strlen($phrase)) {
+            $phrase = substr($phrase, 0, -1);
+        }
+        for($old_index = $phrase_length - 1; $old_index >= 0; $old_index -= 1) {
+            if($phrase[$old_index] == ' ') {
+                $phrase[$new_index]     = '0';
+                $phrase[$new_index - 1] = '2';
+                $phrase[$new_index - 2] = '%';
+                $new_index -= 3;
+            } else {
+                $phrase[$new_index] = $phrase[$old_index];
+                $new_index -= 1;
+            }
+        }
+        return $phrase;
     }
 }
 ?>
