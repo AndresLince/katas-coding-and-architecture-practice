@@ -90,7 +90,7 @@ class Chapter1
      */
     public static function palindromePermutation(string $string): bool{
         $char_table = Utils::createCharTable($string);
-        return Utils::validateMaxOneOdd($char_table);
+        return Utils::validateMaxOdd($char_table, 1);
     }
 }
 ?>

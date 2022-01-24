@@ -52,23 +52,25 @@ class Utils{
 
     /**
      *
-     * Function that validates if an associative array has more than one odd number
+     * Function that validates if an associative array has more than determined odd number
      *
      * @param array $char_table the char array to validate
+     *
+     * @param int $max_valid_odd the number of max odd numbers
      *
      * example: array('x' => 1,'y' => 2, 'z' => 2)
      *
      * @return bool
      *
      */
-    public static function validateMaxOneOdd(array $char_table): bool{
-        $oneOdd = false;
-        foreach ($char_table as $char) {
-            if ($char % 2 != 0) {
-                if ($oneOdd) {
+    public static function validateMaxOdd(array $char_table,int $max_valid_odd) :bool{
+        $odd_counter = 0;
+        foreach ($char_table as $item) {
+            if ($item % 2 != 0) {
+                $odd_counter++;
+                if ($odd_counter > $max_valid_odd) {
                     return false;
                 }
-                $oneOdd = true;
             }
         }
         return true;
