@@ -75,4 +75,79 @@ class Utils{
         }
         return true;
     }
+
+    /**
+     * Function that validates if the $string2 is the result of insert a character to the $string1
+     * Its validate if there are no more than 1 difference between the two strings
+     *
+     * @param string $string1 The first string
+     *
+     * @param string $string2 The second string
+     *
+     * @return bool
+     *
+     */
+    public static function isOneInsertAway(string $string1,string $string2): bool{
+        $index2 = 0;
+        $index1 = 0;
+        while($index1 < strlen($string1) && $index2 < strlen($string2)) {
+            if ($string1[$index1] != $string2[$index2]) {
+                if ($index1 != $index2) {
+                    return false;
+                }
+            } else {
+                $index1++;
+            }
+            $index2++;
+        }
+        return true;
+    }
+
+    /**
+     * Function that validates if a string is the result of do and edition of other
+     * Its validate if there are no more than 1 difference between the two strings
+     *
+     * @param $string 1 The first string
+     *
+     * @param $string2 2 The second string
+     *
+     * @return bool
+     *
+     */
+    public static function isOneEditAway(string $string1,string $string2): bool{
+        $different = false;
+        for($i = 0;$i < strlen($string1); $i++) {
+            if ($string1[$i] != $string2[$i]) {
+                if ($different) {
+                    return false;
+                }
+                $different = true;
+            }
+        }
+        return true;
+    }
+    
+
+    /**
+     * Function that validates if a string is one edit away of other
+     *
+     * @param string $string1 the string to compare with string 2
+     *
+     * @param string $string2 thes string to compare with string 1
+     *
+     * @return bool
+     *
+     */
+    public static function validateOneEditAway($string1, $string2): bool{
+        $length1 = strlen($string1);
+        $length2 = strlen($string2);
+        if ($length1 + 1 == $length2) {
+            return Utils::isOneInsertAway($string1,$string2);
+        } else if ($length2 + 1 == $length1) {
+            return Utils::isOneInsertAway($string2,$string1);
+        } else if ($length2 == $length1) {
+            return Utils::isOneEditAway($string1,$string2);
+        }
+        return false;
+    }
 }

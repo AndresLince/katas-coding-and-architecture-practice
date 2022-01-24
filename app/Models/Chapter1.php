@@ -92,5 +92,28 @@ class Chapter1
         $char_table = Utils::createCharTable($string);
         return Utils::validateMaxOdd($char_table, 1);
     }
+
+    /**
+     * Function that validates if a string is one edit away of other
+     *
+     * @param string $string1 the string to compare with string 2
+     *
+     * @param string $string2 thes string to compare with string 1
+     *
+     * @return bool
+     *
+     */
+    public static function validateOneEditAway($string1, $string2): bool{
+        $length1 = strlen($string1);
+        $length2 = strlen($string2);
+        if ($length1 + 1 == $length2) {
+            return Utils::isOneInsertAway($string1,$string2);
+        } else if ($length2 + 1 == $length1) {
+            return Utils::isOneInsertAway($string2,$string1);
+        } else if ($length2 == $length1) {
+            return Utils::isOneEditAway($string1,$string2);
+        }
+        return false;
+    }
 }
 ?>
