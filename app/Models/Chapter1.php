@@ -78,5 +78,19 @@ class Chapter1
         }
         return $phrase;
     }
+
+    /**
+     *
+     * Function that validates if a string is a permutation of a palindrome
+     *
+     * @param string $string the string to validate
+     *
+     * @return bool
+     *
+     */
+    public static function palindromePermutation(string $string): bool{
+        $char_table = Utils::createCharTable($string);
+        return Utils::validateMaxOneOdd($char_table);
+    }
 }
 ?>
