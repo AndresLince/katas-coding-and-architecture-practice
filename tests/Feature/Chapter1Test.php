@@ -42,5 +42,19 @@ class Chapter1Test extends TestCase
         $result = Chapter1::urlify($string, 13);
         $this->assertEquals($string_result, $result);
     }
+
+    /** @test */
+    public function is_a_palindrome_permutation() {
+        $string = 'Tact Coa';
+        $result = Chapter1::palindromePermutation($string);
+        $this->assertEquals($result, true);
+    }
+
+    /** @test */
+    public function is_not_a_palindrome_permutation() {
+        $string = 'Tact Cota';
+        $result = Chapter1::palindromePermutation($string);
+        $this->assertEquals($result, false);
+    }
 }
 ?>
