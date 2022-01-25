@@ -59,47 +59,24 @@ class Chapter1Test extends TestCase
 
     /** @test */
     public function is_one_edit_away() {
-        $string1 = 'pale';
-        $string2 = 'bale';
-        $result = Chapter1::validateOneEditAway($string1, $string2);
-        $this->assertEquals($result, true);
-
-        $string1 = 'pales';
-        $string2 = 'pale';
-        $result = Chapter1::validateOneEditAway($string1, $string2);
-        $this->assertEquals($result, true);
-
-        $string1 = 'pale';
-        $string2 = 'ple';
-        $result = Chapter1::validateOneEditAway($string1, $string2);
-        $this->assertEquals($result, true);
-
-        $string1 = 'pal';
-        $string2 = 'pale';
-        $result = Chapter1::validateOneEditAway($string1, $string2);
-        $this->assertEquals($result, true);
-
-        $string1 = 'pale';
-        $string2 = 'pal';
-        $result = Chapter1::validateOneEditAway($string1, $string2);
-        $this->assertEquals($result, true);
+        $array_inputs = [
+            'pale' => 'bale',
+            'pales' => 'pale',
+            'pale' => 'ple',
+            'pal' => 'pale',
+            'pale' => 'pal',
+        ];
+        $this->validateAssertEqualsArray($array_inputs,Chapter1::class, 'validateOneEditAway', true);
     }
 
     /** @test */
     public function is_not_one_edit_away() {
-        $string1 = 'pale';
-        $string2 = 'bake';
-        $result = Chapter1::validateOneEditAway($string1, $string2);
-        $this->assertEquals($result, false);
-
-        $string1 = 'raton';
-        $string2 = 'rata';
-        $result = Chapter1::validateOneEditAway($string1, $string2);
-        $this->assertEquals($result, false);
-        $string1 = 'raton';
-        $string2 = 'ratao';
-        $result = Chapter1::validateOneEditAway($string1, $string2);
-        $this->assertEquals($result, false);
+        $array_inputs = [
+            'pale' => 'bake',
+            'raton' => 'rata',
+            'raton' => 'ratao',
+        ];
+        $this->validateAssertEqualsArray($array_inputs, Chapter1::class, 'validateOneEditAway', false);
     }
 }
 ?>
