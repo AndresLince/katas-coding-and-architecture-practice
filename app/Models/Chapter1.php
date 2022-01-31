@@ -115,5 +115,29 @@ class Chapter1
         }
         return false;
     }
+
+    /**
+     * Function that perform basic string compression using the counts of repeated characters.
+     *
+     * @param string $string string to compress
+     *
+     * @return string
+     *
+     */
+    public static function stringCompression(string $string): string{
+        $solution_string = '';
+        $letter_counter = 0;
+        for($i = 0; $i < strlen($string); $i++) {
+            $letter_counter++;
+            if ($i == strlen($string) - 1 || $string[$i] != $string[$i + 1]) {
+                $solution_string .= $string[$i].$letter_counter;
+                $letter_counter = 0;
+            }
+        }
+        if (strlen($solution_string) > strlen($string)) {
+            $solution_string = $string;
+        }
+        return $solution_string;
+    }
 }
 ?>
