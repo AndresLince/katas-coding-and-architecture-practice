@@ -78,5 +78,16 @@ class Chapter1Test extends TestCase
         ];
         $this->validateAssertEqualsArray($array_inputs, Chapter1::class, 'validateOneEditAway', false);
     }
+
+    /** @test */
+    public function string_compression() {
+        $array_inputs_and_results = [
+            'aabcccccaaa'        => 'a2b1c5a3',
+            'aabcccccaaaa'       => 'a2b1c5a4',
+            'aab'                => 'aab',
+            'aabbbbbccccddddaaa' => 'a2b5c4d4a3'
+        ];
+        $this->validateAssertEqualsArrayInputsAndResults($array_inputs_and_results, Chapter1::class, 'stringCompression');
+    }
 }
 ?>
